@@ -1,5 +1,5 @@
-from flask import Flask, requests
-from code.code import str_hello_world
+from flask import Flask, request
+from code.code import list_s3_folder_contents
 from common.configs import get_configs
 import os
 import boto3
@@ -23,8 +23,13 @@ def about() -> str:
 
 @app.route('/sample-pictures')
 def retrieve_pictures() -> list:
-    folder = requests.args('folder')
-
+    folder_path = request.args('path')
+    cloudfront_key_list = []
+    photo_key_list = list_s3_folder_contents(
+        CONFIGS['PHOTO_BUCKET'], folder_path)
+    for key in photo_key_list:
+        cloudfront_key_list.append(f'{CONFIGS["CLOUDFRONT_URL"]}/{key}')
+    return cloudfront_key_list
 
 # class handler(BaseHTTPRequestHandler):
 
