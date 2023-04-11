@@ -1,6 +1,6 @@
 from flask import Flask, request
-from code.code import list_s3_folder_contents
-from common.configs import get_configs
+from code import list_s3_folder_contents
+from configs import get_configs
 import os
 import boto3
 

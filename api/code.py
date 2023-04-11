@@ -1,6 +1,6 @@
 import boto3
 import os
-from common.configs import get_configs
+from configs import get_configs
 # setting up aws session and environment
 STAGE = os.getenv("STAGE", "DEV")
 CONFIGS = get_configs(STAGE)
