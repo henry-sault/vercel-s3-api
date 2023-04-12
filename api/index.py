@@ -30,8 +30,8 @@ def retrieve_pictures() -> list:
         CONFIGS['PHOTO_BUCKET'], folder_path)
     for key in photo_key_list:
         cloudfront_key_list.append(f'{CONFIGS["CLOUDFRONT_URL"]}/{key}')
-    object = '{f"images": {cloudfront_key_list}}'
-    json_object = json.loads(object)
+    object = {"images": cloudfront_key_list}
+    json_object = json.dumps(object)
     return json_object
 
 # class handler(BaseHTTPRequestHandler):
