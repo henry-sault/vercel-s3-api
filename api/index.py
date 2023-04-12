@@ -1,7 +1,7 @@
 from flask import Flask, request
 from common.configs import get_configs
 from common.code import list_s3_folder_contents
-
+import json
 import os
 import boto3
 
@@ -30,7 +30,9 @@ def retrieve_pictures() -> list:
         CONFIGS['PHOTO_BUCKET'], folder_path)
     for key in photo_key_list:
         cloudfront_key_list.append(f'{CONFIGS["CLOUDFRONT_URL"]}/{key}')
-    return cloudfront_key_list
+    object = {"images": cloudfront_key_list}
+    json_object = json.load(object)
+    return json_object
 
 # class handler(BaseHTTPRequestHandler):
 
