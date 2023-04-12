@@ -29,7 +29,8 @@ def retrieve_pictures() -> list:
     photo_key_list = list_s3_folder_contents(
         CONFIGS['PHOTO_BUCKET'], folder_path)
     for key in photo_key_list:
-        cloudfront_key_list.append(f'{CONFIGS["CLOUDFRONT_URL"]}/{key}')
+        cloudfront_key_list.append(
+            f'https://{CONFIGS["CLOUDFRONT_URL"]}/{key}')
     object = {"images": cloudfront_key_list}
     json_object = json.dumps(object)
     return json_object
