@@ -31,7 +31,7 @@ def retrieve_pictures() -> list:
     for key in photo_key_list:
         cloudfront_key_list.append(f'{CONFIGS["CLOUDFRONT_URL"]}/{key}')
     object = {"images": cloudfront_key_list}
-    json_object = json.load(object)
+    json_object = json.loads(object)
     return json_object
 
 # class handler(BaseHTTPRequestHandler):
