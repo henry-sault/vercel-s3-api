@@ -129,3 +129,4 @@ ignore.txt
 # Pyre type checker
 .pyre/
 .vercel
+node_modules
