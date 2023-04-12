@@ -3,7 +3,7 @@ import os
 
 sts = boto3.client('sts')
 role_creds = sts.assume_role(
-    RoleArn=os.get_env("AWS_ROLE_ARN"), RoleSessionName='test_role')
+    RoleArn=os.getenv("AWS_ROLE_ARN"), RoleSessionName='test_role')
 print(f"access key id: {role_creds['Credentials']['AccessKeyId']}")
 
 
