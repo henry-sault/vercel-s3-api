@@ -24,7 +24,7 @@ def about() -> str:
 
 @app.route('/sample-pictures')
 def retrieve_pictures() -> list:
-    folder_path = request.args('path')
+    folder_path = request.args.get('path')
     cloudfront_key_list = []
     photo_key_list = list_s3_folder_contents(
         CONFIGS['PHOTO_BUCKET'], folder_path)
