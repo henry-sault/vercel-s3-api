@@ -1,6 +1,6 @@
 from flask import Flask, request
 from common.configs import get_configs
-from common.code import list_s3_folder_contents
+from common.code import list_s3_folder_contents, get_user_info
 import json
 import os
 import boto3
@@ -17,12 +17,15 @@ def home() -> str:
     return 'Hello, World!'
 
 
-@app.route('/about')
-def about() -> str:
-    return 'Cren Cheddar'
+@app.route('/user-info')
+def user_info() -> list:
+    user_id = request.args.get('id')
+    user_info = get_user_info(user_id)
+    json_object = json.dumps(user_info)
+    return json_object
 
 
-@app.route('/sample-pictures')
+@app.route('/get-pictures')
 def retrieve_pictures() -> list:
     folder_path = request.args.get('path')
     cloudfront_key_list = []

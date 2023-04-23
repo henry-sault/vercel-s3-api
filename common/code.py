@@ -28,10 +28,25 @@ def list_s3_folder_contents(bucket: str, path: str) -> list:
     return key_array
 
 
+def get_user_info(user_id):
+    ssm = new_session.client('ssm', 'us-east-1')
+    parameters = ssm.get_parameter(
+        Name=f"/user_info/{user_id}", WithDecryption=True)
+    print(parameters["Parameter"]["Value"])
+    return parameters["Parameter"]["Value"]
+
+    # user_info = client.get_parameters_by_path(
+    #     Path=f'/user_info/{user_id}',
+    # )
+    # print(user_info)
+    # return user_info
+
+
 def run():
-    list = list_s3_folder_contents(
-        CONFIGS['PHOTO_BUCKET'], CONFIGS['PHOTO_PATH'])
-    print(list)
+    # list = list_s3_folder_contents(
+    #     CONFIGS['PHOTO_BUCKET'], CONFIGS['PHOTO_PATH'])
+    # print(list)
+    get_user_info("test_user")
 
 
 if __name__ == '__main__':
