@@ -1,2 +1,2 @@
-# flask_aws_api_backend
+# vercel-s3-api
 backend for handling requests and performing aws commands
