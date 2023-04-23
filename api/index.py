@@ -21,8 +21,9 @@ def home() -> str:
 def user_info() -> list:
     user_id = request.args.get('id')
     user_info = get_user_info(user_id)
-    json_object = json.dumps(user_info)
-    return json_object
+    return user_info
+    # json_object = json.dumps(user_info)
+    # return json_object
 
 
 @app.route('/get-pictures')
