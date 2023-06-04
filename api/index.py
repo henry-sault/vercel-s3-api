@@ -4,12 +4,13 @@ from common.code import list_s3_folder_contents, get_user_info
 import json
 import os
 import boto3
-
+from flask_cors import CORS
 STAGE = os.getenv('STAGE', 'DEV')
 CONFIGS = get_configs(STAGE)
 s3 = boto3.client('s3')
 
 app = Flask(__name__)
+CORS(app)
 
 
 @app.route('/')
